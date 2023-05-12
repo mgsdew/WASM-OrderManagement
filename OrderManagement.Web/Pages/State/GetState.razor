@@ -1,0 +1,47 @@
+﻿@page "/state"
+@inject HttpClient client
+@using OrderManagement.BLL.Models;
+
+<h1>State</h1>
+
+<p>
+    <a href="/state/add">Create</a>
+</p>
+
+@if (list == null)
+{
+    <p><em>Loading...</em></p>
+}
+else
+{
+    <table class='table'>
+        <thead>
+            <tr>
+                <th>ID</th>
+                <th>Name</th>
+                <th>Action</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var obj in list)
+            {
+                <tr>
+                    <td>@obj.Id</td>
+                    <td>@obj.Name</td>
+                    <td>
+                        <a href='/state/edit/@obj.Id'>Edit</a>  
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+}
+
+@code {
+    State[] list { get; set; }
+    protected override async Task OnInitializedAsync()
+    {
+        list = await client.GetFromJsonAsync<State[]>("api/State/States");
+    }
+
+}

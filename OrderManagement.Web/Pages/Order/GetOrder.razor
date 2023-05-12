@@ -1,0 +1,49 @@
+﻿@page "/order"
+@inject HttpClient client
+@using OrderManagement.BLL.Models;
+
+<h1>Order</h1>
+
+<p>
+    <a href="/order/add">Create</a>
+</p>
+
+@if (list == null)
+{
+    <p><em>Loading...</em></p>
+}
+else
+{
+    <table class='table'>
+        <thead>
+            <tr>
+                <th>ID</th>
+                <th>State</th>
+                <th>Name</th>
+                <th>Action</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var obj in list)
+            {
+                <tr>
+                    <td>@obj.Id</td>
+                    <td>@obj.StateName</td>
+                    <td>@obj.Name</td>
+                    <td>
+                        <a href='/order/edit/@obj.Id'>Edit</a>  
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+}
+
+@code {
+    Order[] list { get; set; }
+    protected override async Task OnInitializedAsync()
+    {
+        list = await client.GetFromJsonAsync<Order[]>("api/Order/OrderList");
+    }
+
+}

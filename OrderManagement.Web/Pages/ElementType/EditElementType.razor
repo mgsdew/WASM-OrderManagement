@@ -1,0 +1,71 @@
+﻿@page "/elementtype/edit/{id:int}"
+@inject HttpClient Http
+@using OrderManagement.BLL.Models;
+@inject Microsoft.AspNetCore.Components.NavigationManager navigation
+@inject IJSRuntime js
+
+<h2>Edit - Eelement Type</h2>
+<hr />
+<div class="row">
+    <div class="col-md-6">
+
+        <EditForm Model="@elementType" OnValidSubmit="UpdateElementType" >
+              <DataAnnotationsValidator/>
+         <div class="form-group">
+             <label for="Name">Name</label>
+            <InputText @bind-Value="elementType.Name" class="form-control"/>
+            <ValidationMessage For="@(()=>elementType.Name)"/>
+         </div>
+
+            <div class="py-2">
+                <button type="submit" class="btn btn-primary">Save</button>
+            </div>
+        </EditForm>
+    </div>
+</div>
+
+@code {
+
+    [Parameter]
+    public int id { get; set; }
+    ElementType elementType = new ElementType();
+
+    protected override async Task OnInitializedAsync()
+    {
+        if (id > 0)
+        {
+            elementType = await Http.GetFromJsonAsync<ElementType>("api/ElementType/" + Convert.ToInt32(id));
+        }       
+    }
+
+    private async Task UpdateElementType()
+    {
+        try
+        {
+            var response = await Http.PutAsJsonAsync("api/ElementType/" + id, @elementType);
+  
+            // for getting response from POST call
+            bool eTypeResponse = await response.Content.ReadFromJsonAsync<bool>();
+            if (eTypeResponse)
+            {
+                await js.InvokeVoidAsync("alert", "Updated Successfully!");
+                navigation.NavigateTo("elementtype");
+            }
+            else
+            {
+                await js.InvokeVoidAsync("alert", "Error occurs to save data!");
+            }
+        }
+        catch(Exception ex)
+        {
+            throw ex;
+        }
+
+    }
+
+    void cancel()
+    {
+        navigation.NavigateTo("/elementtype");
+
+    }
+}

@@ -1,0 +1,61 @@
+﻿@page "/state/edit/{id}"
+@inject HttpClient Http
+@using OrderManagement.BLL.Models;
+@inject Microsoft.AspNetCore.Components.NavigationManager navigation
+@inject IJSRuntime js
+
+<h2>Edit - State</h2>
+<hr />
+<div class="row">
+    <div class="col-md-6">
+
+        <EditForm Model="@state" OnValidSubmit="Update" >
+              <DataAnnotationsValidator/>
+         <div class="form-group">
+             <label for="Name">Name</label>
+            <InputText @bind-Value="state.Name" class="form-control"/>
+            <ValidationMessage For="@(()=>state.Name)"/>
+         </div>
+
+            <div class="py-2">
+                <button type="submit" class="btn btn-primary">Save</button>
+            </div>
+        </EditForm>
+    </div>
+</div>
+
+@code {
+
+    [Parameter]
+    public string id { get; set; }
+
+    State state = new State();
+
+    protected override async Task OnInitializedAsync()
+    {
+        state = await Http.GetFromJsonAsync<State>("api/State/" + Convert.ToInt32(id));
+    }
+
+    protected async Task Update()
+    {
+        var response = await Http.PutAsJsonAsync("/api/State/" + id, state);
+
+        if (!response.IsSuccessStatusCode)
+        {
+            // set error message for display
+            await js.InvokeVoidAsync("alert", $"Error occurs! Failed to update");
+        }
+        else
+        { 
+            await js.InvokeVoidAsync("alert", $"Updated Successfully!");
+        }
+
+        cancel();
+    }
+
+    void cancel()
+    {
+        navigation.NavigateTo("/state");
+
+    }
+}

@@ -1,0 +1,50 @@
+﻿@using OrderManagement.Web.Models
+
+@page "/"
+@inherits ElementTypeBase
+
+@if(ElementTypes == null)
+{
+    <h3>Data is loading ...</h3>
+}
+else
+{
+    <h2 class="mb-5">Element Types</h2>
+
+    var itemCount = ElementTypes.Count();
+
+    if(itemCount > 0)
+    {
+        
+        <table class="table">
+            <thead>
+                <tr>
+                    <th>
+                        ID
+                    </th>
+                    <th>
+                        Name
+                    </th>
+                    <th></th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var item in ElementTypes)
+                {
+                        <tr>
+                            <td>
+                                @item.Id
+                            </td>
+                            <td>
+                                 @item.Name
+                            </td>
+                            <td>
+                                <a asp-page="./Edit" asp-route-id="@item.Id">Edit</a> |
+                                <a asp-page="./Delete" asp-route-id="@item.Id">Delete</a>
+                            </td>
+                        </tr>
+                }
+            </tbody>
+        </table>
+    }
+}

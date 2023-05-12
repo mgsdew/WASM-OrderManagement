@@ -1,0 +1,47 @@
+﻿@page "/elementtype"
+@inject HttpClient client
+@using OrderManagement.BLL.Models;
+
+<h1>Element Type</h1>
+
+<p>
+    <a href="/elementtype/add">Create</a>
+</p>
+
+@if (list == null)
+{
+    <p><em>Loading...</em></p>
+}
+else
+{
+    <table class='table'>
+        <thead>
+            <tr>
+                <th>ID</th>
+                <th>Name</th>
+                <th>Action</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var ele in list)
+            {
+                <tr>
+                    <td>@ele.Id</td>
+                    <td>@ele.Name</td>
+                    <td>
+                        <a href='/elementtype/edit/@ele.Id'>Edit</a>  
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+}
+
+@code {
+    ElementType[] list { get; set; }
+    protected override async Task OnInitializedAsync()
+    {
+        list = await client.GetFromJsonAsync<ElementType[]>("api/ElementType/ElementTypes");
+    }
+
+}

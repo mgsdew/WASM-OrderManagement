@@ -1,0 +1,14 @@
+D:\Project\OrderManagement\OrderManagement.DAL\bin\Debug\net6.0\OrderManagement.DAL.deps.json
+D:\Project\OrderManagement\OrderManagement.DAL\bin\Debug\net6.0\OrderManagement.DAL.runtimeconfig.json
+D:\Project\OrderManagement\OrderManagement.DAL\bin\Debug\net6.0\OrderManagement.DAL.dll
+D:\Project\OrderManagement\OrderManagement.DAL\bin\Debug\net6.0\OrderManagement.DAL.pdb
+D:\Project\OrderManagement\OrderManagement.DAL\obj\Debug\net6.0\OrderManagement.DAL.csproj.AssemblyReference.cache
+D:\Project\OrderManagement\OrderManagement.DAL\obj\Debug\net6.0\OrderManagement.DAL.GeneratedMSBuildEditorConfig.editorconfig
+D:\Project\OrderManagement\OrderManagement.DAL\obj\Debug\net6.0\OrderManagement.DAL.AssemblyInfoInputs.cache
+D:\Project\OrderManagement\OrderManagement.DAL\obj\Debug\net6.0\OrderManagement.DAL.AssemblyInfo.cs
+D:\Project\OrderManagement\OrderManagement.DAL\obj\Debug\net6.0\OrderManagement.DAL.csproj.CoreCompileInputs.cache
+D:\Project\OrderManagement\OrderManagement.DAL\obj\Debug\net6.0\OrderManagement.DAL.dll
+D:\Project\OrderManagement\OrderManagement.DAL\obj\Debug\net6.0\refint\OrderManagement.DAL.dll
+D:\Project\OrderManagement\OrderManagement.DAL\obj\Debug\net6.0\OrderManagement.DAL.pdb
+D:\Project\OrderManagement\OrderManagement.DAL\obj\Debug\net6.0\OrderManagement.DAL.genruntimeconfig.cache
+D:\Project\OrderManagement\OrderManagement.DAL\obj\Debug\net6.0\ref\OrderManagement.DAL.dll

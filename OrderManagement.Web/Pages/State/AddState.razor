@@ -1,0 +1,53 @@
+﻿@page "/state/add"
+@inject HttpClient Http
+@using OrderManagement.BLL.Models;
+@inject Microsoft.AspNetCore.Components.NavigationManager navigation
+@inject IJSRuntime js
+
+<h1>Create</h1>
+
+<hr />
+
+<div class="row">
+    <div class="col-md-6">
+        <a href="/state" class="btn btn-secondary my-2">All records</a>
+
+        <EditForm Model="@state" OnValidSubmit="Create" >
+              <DataAnnotationsValidator/>
+         <div class="form-group">
+             <label for="Name">Name</label>
+            <InputText @bind-Value="state.Name" class="form-control"/>
+            <ValidationMessage For="@(()=>state.Name)"/>
+         </div>
+
+            <div class="py-2">
+                <button type="submit" class="btn btn-primary">Save</button>
+            </div>
+        </EditForm>
+    </div>
+</div>
+
+@code {
+
+    State state = new State();
+
+    protected async Task Create()
+    {
+        var response = await Http.PostAsJsonAsync("/api/State/", state);
+        if (!response.IsSuccessStatusCode)
+        {
+            // set error message for display
+            await js.InvokeVoidAsync("alert", $"There was an error!");
+        }
+        else
+        { 
+            await js.InvokeVoidAsync("alert", $"Record created successfully!");
+        }
+        cancel();
+    }
+
+    void cancel()
+    {
+        navigation.NavigateTo("/state");
+    }
+}

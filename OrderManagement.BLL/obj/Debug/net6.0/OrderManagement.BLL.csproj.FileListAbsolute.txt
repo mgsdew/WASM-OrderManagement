@@ -1,0 +1,15 @@
+D:\Project\OrderManagement\OrderManagement.BLL\bin\Debug\net6.0\OrderManagement.BLL.deps.json
+D:\Project\OrderManagement\OrderManagement.BLL\bin\Debug\net6.0\OrderManagement.BLL.dll
+D:\Project\OrderManagement\OrderManagement.BLL\bin\Debug\net6.0\OrderManagement.BLL.pdb
+D:\Project\OrderManagement\OrderManagement.BLL\bin\Debug\net6.0\OrderManagement.DAL.dll
+D:\Project\OrderManagement\OrderManagement.BLL\bin\Debug\net6.0\OrderManagement.DAL.pdb
+D:\Project\OrderManagement\OrderManagement.BLL\obj\Debug\net6.0\OrderManagement.BLL.csproj.AssemblyReference.cache
+D:\Project\OrderManagement\OrderManagement.BLL\obj\Debug\net6.0\OrderManagement.BLL.GeneratedMSBuildEditorConfig.editorconfig
+D:\Project\OrderManagement\OrderManagement.BLL\obj\Debug\net6.0\OrderManagement.BLL.AssemblyInfoInputs.cache
+D:\Project\OrderManagement\OrderManagement.BLL\obj\Debug\net6.0\OrderManagement.BLL.AssemblyInfo.cs
+D:\Project\OrderManagement\OrderManagement.BLL\obj\Debug\net6.0\OrderManagement.BLL.csproj.CoreCompileInputs.cache
+D:\Project\OrderManagement\OrderManagement.BLL\obj\Debug\net6.0\OrderManagement.BLL.csproj.CopyComplete
+D:\Project\OrderManagement\OrderManagement.BLL\obj\Debug\net6.0\OrderManagement.BLL.dll
+D:\Project\OrderManagement\OrderManagement.BLL\obj\Debug\net6.0\refint\OrderManagement.BLL.dll
+D:\Project\OrderManagement\OrderManagement.BLL\obj\Debug\net6.0\OrderManagement.BLL.pdb
+D:\Project\OrderManagement\OrderManagement.BLL\obj\Debug\net6.0\ref\OrderManagement.BLL.dll

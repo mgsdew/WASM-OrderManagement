@@ -1,0 +1,99 @@
+﻿@page "/order/add"
+@inject HttpClient Http
+@using OrderManagement.BLL.Models;
+@inject Microsoft.AspNetCore.Components.NavigationManager navigation
+@inject IJSRuntime js
+
+<h1>Order - Create</h1>
+
+<hr />
+
+<div class="row">
+    <div class="col-md-6">
+        <a href="/order" class="btn btn-secondary my-2">Back to List</a>
+         <EditForm Model="@order" OnValidSubmit="Create" >
+              <DataAnnotationsValidator/>
+            <div class="form-group">
+                <label for="Name" class="form-label">Name</label>
+                <InputText @bind-Value="order.Name" class="form-control"/>
+                <ValidationMessage For="@(()=>order.Name)"/>
+            </div>
+            <div class="form-group">
+                <label for="State" class="form-label">State</label>
+                <InputText @bind-Value="order.StateName" hidden/>
+               @* <select class="form-select" @bind="order.StateId">
+                    <option value="0" selected> -- Select State -- </option>
+                    @if (stateList.Count() > 0)
+                    { 
+                        @foreach (var state in @stateList)
+                        {
+                            <option value="@state.Id">@state.Name</option>
+                        }                        
+                    }                  
+                </select>*@
+                <InputSelect class="form-select" @onchange="SelectedStateChanged"  aria-label="Default select" @bind-Value="@order.StateId">
+                  <option value="0" selected> -- Select State -- </option>
+                    @foreach (var state in @stateList)
+                    {
+                        <option value="@state.Id">@state.Name</option>
+                    }
+                </InputSelect>
+            </div>
+             <div class="py-2">
+                <button type="submit" class="btn btn-primary">Save</button>
+            </div>
+        </EditForm>
+    </div>
+</div>
+
+
+
+@code {
+
+    Order order = new Order();
+    State[] stateList { get; set; }
+    string selectedState { get; set; }
+
+    protected override async Task OnInitializedAsync()
+    {
+        stateList =  await Http.GetFromJsonAsync<State[]>("api/State/States");
+    }
+
+    protected async Task Create()
+    {
+        try
+        {
+            order.StateName = selectedState;
+            var response = await  Http.PostAsJsonAsync("/api/Order/", order);
+
+            if (!response.IsSuccessStatusCode)
+            {
+                // set error message for display
+                await js.InvokeVoidAsync("alert", $"Error occurs! Failed to save");
+            }
+            else
+            { 
+                await js.InvokeVoidAsync("alert", $"Record created successfully!");
+            }
+            //cancel();
+        }
+        catch(Exception ex){
+            throw ex;
+        }
+
+    }
+
+    void SelectedStateChanged(ChangeEventArgs e)
+    {
+        selectedState = "";
+        if (e.Value is not null)
+        {
+            selectedState = (string)e.Value;
+        }
+    }
+
+    void cancel()
+    {
+        navigation.NavigateTo("/order");
+    }
+}
